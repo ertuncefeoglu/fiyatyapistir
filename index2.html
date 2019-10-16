@@ -1,0 +1,45 @@
+<html >
+<head>
+<title>Untitled Page</title>
+<script language="javascript">
+	/*
+	function pasteall(){
+		//console.log("here");
+		//console.log(window.clipboardData);
+		data = ClipboardEvent.clipboardData;
+		console.log(data);
+		//
+	}
+	*/
+
+function pasteText() {
+	navigator.clipboard.readText()
+  	.then(text => {
+    	console.log(text);
+
+    	allrows = text.split('\n');
+    	console.log(allrows);
+		for (var i=0;i<allrows.length;i++){
+			textrow='Text'+(i+1);
+			document.getElementById(textrow).value=allrows[i]
+		}
+  })
+  .catch(err => {
+    // maybe user didn't grant access to read from clipboard
+    console.log('Something went wrong', err);
+  });
+}
+</script>
+</head>
+<body>
+<input type=text id="Text1" onpaste="pasteall()" />
+<br />
+<input id="Text2" type="text" />
+<br />
+<input id="Text3" type="text" />
+<br />
+<input id="Text4" type="text" />
+<button type="submit" onclick="pasteText()"> Gönder </button>
+
+</body>
+</html>
